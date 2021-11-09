@@ -62,7 +62,4 @@ process.on('SIGTERM', () => {
 });
 
 
-require('./tokens');
-require('./users');
 require('./projects');
-require('./tasks');
