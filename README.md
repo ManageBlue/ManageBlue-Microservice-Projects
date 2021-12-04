@@ -1,5 +1,5 @@
-# ManageBlue-Backend
-Backend Service for the ManageBlue App.
+# ManageBlue-Microservice-Projects
+Backend microservice for projects of the ManageBlue App.
 
 ## Models
 
@@ -20,5 +20,12 @@ Backend Service for the ManageBlue App.
 - `/` (POST) - Create new project
 - `/:id` (PUT) - Update project by ID
 - `/:id` (DELETE) - Delete project by ID
+
+## CONFIG ENV variables
+- `PORT` - server port
+- `URL` - url to server
+- `MONGODB_CLOUD_URI` - url to mongodb
+- `TASK_API` - url to tasks microservice
+- `JWT_SECRET` - jwt secret
 
 

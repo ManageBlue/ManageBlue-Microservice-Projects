@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const authJWT = require("../middlewares/authJWT");
+//const authJWT = require("../middlewares/authJWT");
 const projectsController = require("../controllers/projects");
 
 
@@ -18,16 +18,16 @@ module.exports = projectsRouter => {
     router.get("/:id", projectsController.returnByID);
 
     // Return project by ID - filter by query parameters
-    router.get("/", [authJWT.verifyTokenWhitelist], projectsController.return);
+    router.get("/", /*[authJWT.verifyTokenWhitelist],*/ projectsController.return);
 
     // Create project
-    router.post("/", [authJWT.verifyTokenWhitelist], projectsController.create);
+    router.post("/", /*[authJWT.verifyTokenWhitelist],*/ projectsController.create);
 
     // Update project by ID
-    router.put("/:id", [authJWT.verifyTokenWhitelist], projectsController.update);
+    router.put("/:id", /*[authJWT.verifyTokenWhitelist],*/ projectsController.update);
 
     // Delete project by ID
-    router.delete("/:id", [authJWT.verifyTokenWhitelist], projectsController.delete);
+    router.delete("/:id", /*[authJWT.verifyTokenWhitelist],*/ projectsController.delete);
 
     projectsRouter.use('/api/v1/projects', router);
 };

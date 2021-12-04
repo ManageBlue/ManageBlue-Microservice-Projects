@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
-const tasks = require('../services/tasks');
+const axios = require("axios");
+
+const config = require('../config/config')
 
 
 // Return project with requested id
@@ -93,8 +95,8 @@ exports.create = (req, res) => {
     let newProject = new Project({
         title: req.body.title,
         description: req.body.description,
-        active : req.body.active,
-        members : req.body.members
+        active: req.body.active,
+        members: req.body.members
     });
 
     // Save new Project in the database
@@ -114,24 +116,25 @@ exports.create = (req, res) => {
 // Delete project
 exports.delete = (req, res) => {
     Project.findByIdAndDelete(req.params.id)
-        .then(async project => {
+        .then(project => {
             if (!project) {
                 return res.status(404).send({
                     message: `No project with selected ID!`
                 });
             }
+
             // Delete tasks
-            try {
-                await tasks.deleteProjectTasks(req.params.id);
-            }
-            catch (error){
-                return res.status(500).send({
-                    message: error.message || "An error occurred while deleting project tasks!"
-                });
+            let taskDeletePath = config.taskApiURI + '/deleteProject/'
+            axios.delete(taskDeletePath + req.params.id)
+                .then(() => {
+                    res.send({message: "Project deleted!"})
+                })
+                .catch(error => {
+                    return res.status(500).send({
+                        message: error.message || "An error occurred while deleting project tasks!"
+                    });
+                })
 
-            }
-
-            res.send({message: "Project deleted!"});
 
         })
         .catch(error => {
