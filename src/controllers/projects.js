@@ -8,7 +8,7 @@ const config = require('../config/config')
 // Return project with requested id
 exports.returnByID = (req, res) => {
     Project.findById(req.params.id)
-        .populate("members", "firstName lastName")
+        //.populate("members", "firstName lastName")
         .then(project => {
             if (!project) {
                 return res.status(404).json({
@@ -41,7 +41,7 @@ exports.return = (req, res) => {
         .sort({updatedAt: -1, _id: -1})
         .skip(16 * (req.query.page || 0))
         .limit(16)
-        .populate("members", "firstName lastName")
+        //.populate("members", "firstName lastName")
         .then(projects => {
             if (!projects) {
                 return res.status(404).json({
