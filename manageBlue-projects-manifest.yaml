@@ -17,9 +17,6 @@ spec:
       containers:
       - name: manageblue-projects-microservice
         image: ghcr.io/manageblue/manageblue-microservice-projects:latest
-        env:
-        - name: MONGODB_CLOUD_URI
-          value: "mongodb+srv://ManageBlueMongo:MBM-pass-420@managebluemongo.wxj1o.mongodb.net/ManageBlue"
         ports:
         - containerPort: 5001
 
