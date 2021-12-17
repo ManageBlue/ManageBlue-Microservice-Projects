@@ -124,7 +124,8 @@ exports.delete = (req, res) => {
             }
 
             // Delete tasks
-            let taskDeletePath = config.taskApiURI + '/deleteProject/'
+            // let taskDeletePath = config.taskApiURI + '/deleteProject/'
+            let taskDeletePath = process.env.MANAGEBLUE_TASKS_MICROSERVICE_LOAD_BALANCER_SERVICE_HOST + '/deleteProject/'
             console.log(taskDeletePath)
             axios.delete(taskDeletePath + req.params.id)
                 .then(() => {
