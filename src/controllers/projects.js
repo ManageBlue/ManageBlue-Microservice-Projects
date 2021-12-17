@@ -125,6 +125,7 @@ exports.delete = (req, res) => {
 
             // Delete tasks
             let taskDeletePath = config.taskApiURI + '/deleteProject/'
+            console.log(taskDeletePath)
             axios.delete(taskDeletePath + req.params.id)
                 .then(() => {
                     res.send({message: "Project deleted!"})
