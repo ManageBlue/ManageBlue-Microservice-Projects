@@ -123,18 +123,16 @@ exports.delete = (req, res) => {
                 });
             }
 
-            // Delete tasks
+            // Delete tasks asynchronously
             let taskDeletePath = config.taskApiURI + '/deleteProject/'
             axios.delete(taskDeletePath + req.params.id)
-                .then(() => {
-                    res.send({message: "Project deleted!"})
-                })
                 .catch(error => {
                     return res.status(500).send({
                         message: error.message || "An error occurred while deleting project tasks!"
                     });
                 })
 
+            res.send({message: "Project deleted!"})
 
         })
         .catch(error => {
