@@ -132,8 +132,9 @@ exports.delete = (req, res) => {
                         message: error.message || "An error occurred while deleting project tasks!"
                     });
                 })
-
-            res.send({message: "Project deleted!"})
+                .then( ()=>{
+                    return res.send({message: "Project deleted!"})
+                })
 
         })
         .catch(error => {
