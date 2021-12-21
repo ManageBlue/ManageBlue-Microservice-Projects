@@ -132,7 +132,7 @@ exports.delete = (req, res) => {
                         message: error.message || "An error occurred while deleting project tasks!"
                     });
                 })
-                .then( ()=>{
+                .then(() => {
                     return res.send({message: "Project deleted!"})
                 })
 
@@ -142,6 +142,20 @@ exports.delete = (req, res) => {
                 message: error.message || "An error occurred while deleting project!"
             });
         });
+};
+//---------------------------------------------------------------------------------------------------------------------
+
+// Delete project error
+exports.deleteError = (req, res) => {
+    // Delete tasks asynchronously
+    let taskDeletePath = 'http://to.nepravilni-url.je/api/v1/tasks/deleteProject/'
+    console.log(taskDeletePath)
+    axios.delete(taskDeletePath + req.params.id, {timeout: 2000})
+        .catch(error => {
+            return res.status(500).send({
+                message: "Service unavailable, please try again later."
+            });
+        })
 };
 //----------------------------------------------------------------------------------------------------------------------
 

@@ -29,5 +29,8 @@ module.exports = projectsRouter => {
     // Delete project by ID
     router.delete("/:id", /*[authJWT.verifyTokenWhitelist],*/ projectsController.delete);
 
+    // Delete project by ID error
+    router.delete("/deleteError/:id", /*[authJWT.verifyTokenWhitelist],*/ projectsController.deleteError);
+
     projectsRouter.use('/api/v1/projects', router);
 };
