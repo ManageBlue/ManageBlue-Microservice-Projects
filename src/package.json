@@ -16,6 +16,7 @@
   "homepage": "https://github.com/ManageBlue/ManageBlue-Backend#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "axios-retry": "^3.2.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",

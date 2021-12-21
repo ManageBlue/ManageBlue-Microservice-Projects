@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
-const axios = require("axios");
+// const axios = require("axios");
 
 const config = require('../config/config')
 
@@ -144,7 +144,13 @@ exports.delete = (req, res) => {
         });
 };
 //---------------------------------------------------------------------------------------------------------------------
-
+const axios = require('axios').default;
+const axiosRetry = require('axios-retry');
+axiosRetry(axios, {
+    retries: 5,
+    shouldResetTimeout: true,
+    retryCondition: (_error) => true // retry no matter what
+});
 // Delete project error
 exports.deleteError = (req, res) => {
     // Delete tasks asynchronously
