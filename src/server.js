@@ -30,7 +30,7 @@ require("./routes/projects")(server);
 require("./routes/healthcheck")(server);
 require("./routes/metrics")(server);
 
-server.get("/projects", (req, res) => {
+server.get("/", (req, res) => {
     res.json({ message: "Projects server is running!" });
 });
 
