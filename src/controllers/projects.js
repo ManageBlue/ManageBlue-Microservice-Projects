@@ -128,7 +128,7 @@ exports.delete = (req, res) => {
             console.log(taskDeletePath)
             axios.delete(taskDeletePath + req.params.id)
                 .catch(error => {
-                    return res.status(500).send({
+                    return res.status(400).send({
                         message: error.message || "An error occurred while deleting project tasks!"
                     });
                 })
@@ -217,7 +217,7 @@ exports.update = (req, res) => {
                     res.status(200).json({message: "Project updated"})
                 })
                 .catch(error => {
-                    res.status(400).send({
+                    res.status(500).send({
                         message: error.message || "An error occurred while updating project!"
                     });
                 });
