@@ -17,6 +17,13 @@ spec:
       containers:
       - name: manageblue-projects-microservice
         image: ghcr.io/manageblue/manageblue-microservice-projects:latest
+        env:
+          - name: MONGODB_CLOUD_URI
+            value: mongodb+srv://ManageBlueMongo:RSOmongo420@managebluemongo.wxj1o.mongodb.net/ManageBlueMongo
+          - name: TASK_API
+            value: manageblue-tasks-microservice-load-balancer.default.svc.cluster.local/
+          - name: TASK_API2
+            value: manageblue-tasks-microservice-load-balancer/api/v1/tasks2
         ports:
         - containerPort: 5001
 
@@ -25,12 +32,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: manageblue-projects-microservice-load-balancer
+  name: manageblue-projects-microservice-node-port
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 5001
+  - port: 80
+    targetPort: 5001
   selector:
     app: manageblue-projects-microservice
