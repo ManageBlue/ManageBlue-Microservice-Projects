@@ -124,7 +124,7 @@ exports.delete = (req, res) => {
             }
 
             // Delete tasks asynchronously
-            let taskDeletePath = 'http://' + config.taskApiURI + 'api/v1/tasks/deleteProject/'
+            let taskDeletePath = 'http://' + config.taskApiURI + '/tasks/api/v1/deleteProject/'
             console.log(taskDeletePath)
             axios.delete(taskDeletePath + req.params.id)
                 .catch(error => {
@@ -229,3 +229,26 @@ exports.update = (req, res) => {
         });
 };
 //----------------------------------------------------------------------------------------------------------------------
+
+const grpc_client = require('../gRPC_client')
+exports.gRPC = (req, res) => {
+    if(req.body.projectId){
+
+        grpc_client.getProjectDeadlines(
+            {
+                projectId: req.body.projectId,
+            },
+            (error, deadlines) => {
+                if (error) return res.status(404).json({
+                    message: error.message || "Problem with grpc!"
+                });
+                else res.status(200).json(deadlines);
+            }
+        )
+    }
+    else{
+        res.status(500).send({
+            message: "Required data must be present!"
+        });
+    }
+}

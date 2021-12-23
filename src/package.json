@@ -24,6 +24,8 @@
     "mongo": "^0.1.0",
     "mongod": "^2.0.0",
     "mongoose": "^6.0.8",
-    "prom-client": "^14.0.1"
+    "prom-client": "^14.0.1",
+    "@grpc/grpc-js": "^1.4.5",
+    "@grpc/proto-loader": "^0.6.7"
   }
 }

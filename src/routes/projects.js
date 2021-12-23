@@ -14,6 +14,9 @@ module.exports = projectsRouter => {
     });
 
 
+    // gRPC demo
+    router.post("/gRPC", projectsController.gRPC);
+
     // Return project by ID
     router.get("/:id", projectsController.returnByID);
 
