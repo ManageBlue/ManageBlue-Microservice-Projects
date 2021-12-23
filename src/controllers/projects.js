@@ -217,7 +217,7 @@ exports.update = (req, res) => {
                     res.status(200).json({message: "Project updated"})
                 })
                 .catch(error => {
-                    res.status(500).send({
+                    res.status(400).send({
                         message: error.message || "An error occurred while updating project!"
                     });
                 });
@@ -247,7 +247,7 @@ exports.gRPC = (req, res) => {
         )
     }
     else{
-        res.status(500).send({
+        res.status(400).send({
             message: "Required data must be present!"
         });
     }
